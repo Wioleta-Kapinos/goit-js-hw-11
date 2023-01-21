@@ -29,7 +29,7 @@ function renderGalleryImages(response) {
         <p class="info-item"><b>Downloads</b>${el.downloads}</p>
         </div></div>`
     }).join("");
-    gallery.innerHTML = cardMarker;
+    gallery.insertAdjacentHTML("beforeend", cardMarker);
     lightbox.refresh();
 }
 const searchImages = async event => {
