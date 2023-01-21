@@ -31,7 +31,6 @@ input {
 }
 
 button {
-  /* position: relative; */
   background-color: #ffffe0;
   cursor: pointer;
 }
