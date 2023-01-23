@@ -92,6 +92,41 @@ img {
   color: #ffffff;
   transform: scale(1.10);
 }
+#back-to-top {
+  background-color: #e56363;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  margin: 30px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s;
+  z-index: 1000;
+}
+#back-to-top:hover {
+  cursor: pointer;
+  background-color: #A52A2A;
+}
+#back-to-top:active {
+  background-color: rgb(194, 83, 83);
+}
+#back-to-top::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+.visib {
+  visibility: visible;
+}
+.hide {
+  visibility: hidden;
+}
 /* 
 .icon {
   fill: black;

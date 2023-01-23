@@ -6,6 +6,7 @@ const form = document.querySelector(".search-form");
 const inputForm = document.querySelector("input");
 const gallery = document.querySelector(".gallery");
 const buttonLoadMore = document.querySelector(".load-more");
+const buttonToTop = document.querySelector(".back-to-top");
 const searchParams = {
     imageType: "photo",
     orient: "horizontal",
@@ -92,4 +93,12 @@ form.addEventListener("submit", searchImages);
 buttonLoadMore.addEventListener("click", loadMoreImages);
 document.addEventListener("scroll", () => {
      scrollImages();
+     if (document.documentElement.scrollTop > 300) {
+        document.getElementById("back-to-top").className = "visib";
+    } else {
+        document.getElementById("back-to-top").className = "hide";
+    }
 });
+buttonToTop.addEventListener("click", () => {
+     window.scrollTo({ top: 0, behavior: 'smooth' });
+})
