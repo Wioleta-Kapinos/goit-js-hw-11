@@ -7,6 +7,9 @@ const inputForm = document.querySelector("input");
 const gallery = document.querySelector(".gallery");
 const buttonLoadMore = document.querySelector(".load-more");
 const buttonToTop = document.querySelector(".back-to-top");
+window.onload = () => {
+    document.getElementById("back-to-top").className = "hide";
+};
 const searchParams = {
     imageType: "photo",
     orient: "horizontal",
@@ -72,8 +75,8 @@ function loadMoreImages() {
     fetchImages()
         .then((response) => {
             renderGalleryImages(response);
-            currentPage += 1;
             scrollImages();
+            currentPage += 1;
         })
         .catch((error) => {
             console.log(error);
@@ -91,14 +94,15 @@ window.scrollBy({
 }
 form.addEventListener("submit", searchImages);
 buttonLoadMore.addEventListener("click", loadMoreImages);
-document.addEventListener("scroll", () => {
-     scrollImages();
-     if (document.documentElement.scrollTop > 300) {
+document.addEventListener("scroll", scrollPage);
+function scrollPage() {
+    scrollImages();
+    if (document.documentElement.scrollTop > 500) {
         document.getElementById("back-to-top").className = "visib";
     } else {
-        document.getElementById("back-to-top").className = "hide";
+    document.getElementById("back-to-top").className = "hide";
     }
+}
+buttonToTop.addEventListener("click", function() {
+    $("html, body").animate({scrollTop: 0 }, 500);
 });
-buttonToTop.addEventListener("click", () => {
-     window.scrollTo({ top: 0, behavior: 'smooth' });
-})
