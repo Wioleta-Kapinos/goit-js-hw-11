@@ -2,11 +2,12 @@ import Notiflix from "notiflix";
 import axios from "axios";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
+import jQuery from "jquery";
 const form = document.querySelector(".search-form");
 const inputForm = document.querySelector("input");
 const gallery = document.querySelector(".gallery");
 const buttonLoadMore = document.querySelector(".load-more");
-const buttonToTop = document.querySelector(".back-to-top");
+const buttonToTop = document.querySelector("#back-to-top");
 window.onload = () => {
     document.getElementById("back-to-top").className = "hide";
 };
@@ -75,28 +76,27 @@ function loadMoreImages() {
     fetchImages()
         .then((response) => {
             renderGalleryImages(response);
-            scrollImages();
             currentPage += 1;
+            scrollImages();
         })
         .catch((error) => {
             console.log(error);
         });   
 }
-function scrollImages() {
-    const { height: cardHeight } = document
-  .querySelector(".gallery")
-  .firstElementChild.getBoundingClientRect();
+ function scrollImages() {
+     const { height: cardHeight } = document
+   .querySelector(".gallery")
+   .firstElementChild.getBoundingClientRect();
 
-window.scrollBy({
-  top: cardHeight * 2,
-  behavior: "smooth",
+    window.scrollBy({
+   top: cardHeight * 2,
+   behavior: "smooth",
 });
 }
 form.addEventListener("submit", searchImages);
 buttonLoadMore.addEventListener("click", loadMoreImages);
 document.addEventListener("scroll", scrollPage);
 function scrollPage() {
-    scrollImages();
     if (document.documentElement.scrollTop > 500) {
         document.getElementById("back-to-top").className = "visib";
     } else {
