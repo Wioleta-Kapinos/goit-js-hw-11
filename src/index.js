@@ -2,7 +2,6 @@ import Notiflix from "notiflix";
 import axios from "axios";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-import jQuery from "jquery";
 const form = document.querySelector(".search-form");
 const inputForm = document.querySelector("input");
 const gallery = document.querySelector(".gallery");
@@ -15,7 +14,7 @@ const searchParams = {
     imageType: "photo",
     orient: "horizontal",
     safeSearch: "true",
-}
+};
 buttonLoadMore.style.display = "none";
 let inputFormValue = "";
 let currentPage = 1;
@@ -83,14 +82,14 @@ function loadMoreImages() {
             console.log(error);
         });   
 }
- function scrollImages() {
-     const { height: cardHeight } = document
+function scrollImages() {
+    const { height: cardHeight } = document
    .querySelector(".gallery")
    .firstElementChild.getBoundingClientRect();
 
     window.scrollBy({
-   top: cardHeight * 2,
-   behavior: "smooth",
+    top: cardHeight * 2,
+    behavior: "smooth",
 });
 }
 form.addEventListener("submit", searchImages);
@@ -103,6 +102,7 @@ function scrollPage() {
     document.getElementById("back-to-top").className = "hide";
     }
 }
-buttonToTop.addEventListener("click", function() {
-    $("html, body").animate({scrollTop: 0 }, 500);
+buttonToTop.addEventListener("click", function(e) {
+    e.preventDefault();
+    window.scrollTo({top: 0, behavior: "smooth"});
 });
